@@ -1,5 +1,5 @@
 import styles from "./App.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/header/Header";
 import SendInput from "./components/send_Input/SendInput";
 import MessageBox from "./components/message_box/MessageBox";
@@ -17,11 +17,19 @@ function App() {
     setTel(tel);
     setId(id);
     setToken(token);
-
-    setInterval(() => {
-      dispatch(fetchGetMessage({ id: id, token: token }));
-    }, 6000);
   };
+
+  useEffect(() => {
+    const idInterval = setInterval(() => {
+      if (id && token) {
+        dispatch(fetchGetMessage({ id: id, token: token }));
+      }
+    }, 6000);
+
+    return () => {
+      clearInterval(idInterval);
+    };
+  }, [dispatch, id, token]);
 
   const messageEntry = (value) => {
     if (!tel || !id || !token) {
