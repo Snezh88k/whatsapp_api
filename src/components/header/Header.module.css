@@ -1,0 +1,39 @@
+.telWrapper {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 57px;
+  background-color: #f0f2f5;
+  z-index: 10;
+}
+
+.telWrapper input {
+  margin-right: 10px;
+  left: 60px;
+  border: none;
+  border-radius: 4px;
+  padding: 9px 12px;
+  font-size: 16px;
+}
+
+.telWrapper img {
+  position: absolute;
+  left: 20px;
+}
+
+input[type="submit"] {
+  border: 2px solid #56656f;
+  color: #56656f;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  border: 2px solid black;
+  color: black;
+}

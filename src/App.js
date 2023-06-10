@@ -1,23 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from "./App.module.css";
+import { useState } from "react";
+import Header from "./components/header/Header";
+import SendInput from "./components/send_Input/SendInput";
+import MessageBox from "./components/message_box/MessageBox";
+import { fetchGetMessage, fetchPostMessage } from "./store/slice/messageSlice";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+
+  const [tel, setTel] = useState();
+  const [id, setId] = useState();
+  const [token, setToken] = useState();
+
+  const updateTel = (tel, id, token) => {
+    setTel(tel);
+    setId(id);
+    setToken(token);
+
+    setInterval(() => {
+      dispatch(fetchGetMessage({ id: id, token: token }));
+    }, 6000);
+  };
+
+  const messageEntry = (value) => {
+    if (!tel || !id || !token) {
+      alert("Заполните всю информацию!");
+    } else {
+      dispatch(
+        fetchPostMessage({
+          idInstance: id,
+          token: token,
+          tel: tel,
+          text: value,
+        })
+      );
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.wrapper}>
+      <div className={styles.chatWrapper}>
+        <Header updateTel={updateTel} />
+        <MessageBox />
+        <SendInput messageEntry={messageEntry} />
+      </div>
     </div>
   );
 }

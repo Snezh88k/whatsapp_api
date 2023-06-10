@@ -1,0 +1,37 @@
+.messageWrapper {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 57px;
+  background-color: #f0f2f5;
+  z-index: 10;
+}
+
+.messageWrapper form {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messageWrapper img {
+  width: 25px;
+  margin-left: 10px;
+}
+
+.messageInput {
+  width: 80%;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 16px;
+}
+
+input[type="image"] {
+  margin-left: 15px;
+}
